@@ -38,7 +38,8 @@ public class NaverDAO {
 		try {
 			getConnection();
 			// Ã³¸®
-			String sql = "INSERT INTO movie VALUES(" + "?,?,?,?,?,?)";
+			String sql = "INSERT INTO movie VALUES("
+					+ "?,?,?,?,?,?)";
 			ps = conn.prepareStatement(sql);
 			ps.setInt(1, vo.getCode());
 			ps.setString(2, vo.getTitle());

@@ -9,7 +9,7 @@ import org.jsoup.select.Elements;
 
 public class NaverManager {
 	NaverDAO dao = new NaverDAO();
-	int count = 0;
+	int count = 0; // 크롤링하다가 오류나면 재귀호출하는데 for문 시작하는데서 사용될 변수
 
 	public static void main(String[] arg) {
 		NaverManager nm = new NaverManager();
@@ -46,7 +46,7 @@ public class NaverManager {
 		return list;
 	}
 
-	// data 얻기
+	// 1. data 얻기
 	public List<NaverMovieVO> getMovieInfoData() {
 		List<NaverMovieVO> list = new ArrayList<NaverMovieVO>();
 		try {
@@ -59,7 +59,9 @@ public class NaverManager {
 				 * 539 || i == 550 || i == 559 || i == 582) continue;재귀호출로 넘어가자
 				 */
 				String code = cList.get(i);
-				Document doc = Jsoup.connect("http://movie.naver.com/movie/bi/mi/basic.nhn?code=" + code).get();
+				Document doc = Jsoup
+						.connect("http://movie.naver.com/movie/bi/mi/basic.nhn?code=" + code)
+						.get();
 
 				Element title = doc.select("div.mv_info h3.h_movie a").first();
 
